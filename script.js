@@ -15,12 +15,12 @@ const addTransactionIntoDOM = (transaction) => {
   const li = document.createElement("li");
 
   li.classList.add(CSSClass);
-  
   li.innerHTML = `
-        ${transaction.name} <span> ${operator} R$ ${amoutWithoutOperator}</span>`;
+        ${transaction.name} <span> ${operator} R$ ${amountWithoutOperator}</span><button class="delete-btn">x</button>
+  `;
   transactionUl.append(li);
 
-  console.log(li);
+    console.log(li);
   //console.log(operator);
 
   {
@@ -29,5 +29,10 @@ const addTransactionIntoDOM = (transaction) => {
     // </li>
   }
 };
+ // addTransactionIntoDOM(dummyTransactions[1]);
 
-addTransactionIntoDOM(dummyTransactions[1]);
+  const init = () => {
+    dummyTransactions.forEach(addTransactionIntoDOM);
+  };
+
+  init()
