@@ -1,5 +1,7 @@
 const transactionUl = document.querySelector("#transactions");
-//console.log(transactionUl);
+const incomeDisplay = document.querySelector('#money-plus')
+const expenseDisplay = document.querySelector('#money-minus')
+const balanceDisplay = document.querySelector('#balance')
 
 const dummyTransactions = [
   { id: 1, name: "Bolo de brigadeiro", amount: -20 },
@@ -36,20 +38,26 @@ const addTransactionIntoDOM = (transaction) => {
 
 const updateBalanceValues = () => {
     const transactionsAmounts = dummyTransactions.map(
-      (transaction) => transaction.amount
-    );
-    const total = transactionsAmounts.reduce((acumulator, transaction) => acumulator + transaction, 0).toFixed(2);
-    const income = transactionsAmounts
-    .filter((value) => value > 0)
-    .reduce((accumulator, value) => accumulator + value, 0)
-    .toFixed(2);
-    // console.log(income)
+      (transaction) => transaction.amount);
 
-    const desp =transactionsAmounts
+    const income = transactionsAmounts
     .filter((value) => value < 0 )
     .reduce((accumulator, value)=> accumulator + value,0)
     .toFixed(2);
-    console.log(desp)
+    
+    const expense = Math.abs(transactionsAmounts
+    .filter(value => value <0)
+    .reduce((accumulator, value)=> accumulator + value,0))
+    .toFixed(2);
+
+    const total = transactionsAmounts
+    .reduce ((accumulator, transaction => accumulator + transaction, 0))
+    .toFixed(2);
+
+    balanceDisplay.textContent = `R$ ${total}`
+    incomeDisplay.textContent = `R$ ${income}`
+    expenseDisplay.textContent = `R$ ${expense}`
+    console.log(icnome);
   };
   
 
